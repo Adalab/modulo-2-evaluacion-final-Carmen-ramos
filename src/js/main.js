@@ -1,15 +1,19 @@
 "use strict";
-const inputElement = document.querySelector(".js-input");
-const buttonElement = document.querySelector(".js-button");
+const inputEl = document.querySelector(".js-input");
+const buttonEl = document.querySelector(".js-button");
+//const apiurl = 'http://api.tvmaze.com/search/shows?q='
+const ulLI = document.querySelector(".js-showList");
+const inputValue = inputEl.value;
 
-let shows = [];
+let showsList = [];
 
-function getApiData() {
-  fetch("http://api.tvmaze.com/search/shows?q=girls")
+function getApiData(ev) {
+  fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`)
     .then((response) => response.json())
     .then((data) => {
       for (let i = 0; i < data.length; i++) {
-        shows = data[i].show;
+        showsList = data[i].show;
       }
     });
 }
+buttonEl.addEventListener("click", getApiData);
