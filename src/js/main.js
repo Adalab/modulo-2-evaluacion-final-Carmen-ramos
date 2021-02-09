@@ -84,8 +84,8 @@ function handleShow(ev) {
     return item.id === clickedShowID;
   });
   // favoritesFound me va a dar si el elemento clickado esta en fav o no. Sino se encuentra nos devueve -1
-  const favoritesFound = favoritesList.findIndex((pepino) => {
-    return pepino.id === clickedShowID;
+  const favoritesFound = favoritesList.findIndex((favorite) => {
+    return favorite.id === clickedShowID;
   });
 
   if (favoritesFound === -1) {
@@ -96,6 +96,7 @@ function handleShow(ev) {
   console.log(favoritesList);
   setInLocalStorage();
   paintFavList();
+  paintList();
 }
 
 function paintFavList() {
@@ -127,14 +128,5 @@ function getFromLocalStorage() {
     paintFavList();
   }
 }
-/*
-function paintFavList() {
-  let htmlCode = "";
-  console.log(htmlCode);
-  ulFavList.innerHTML = htmlCode;
-}*/
 
 getFromLocalStorage();
-//getApiData();
-//handleForm();
-//handleShow();
