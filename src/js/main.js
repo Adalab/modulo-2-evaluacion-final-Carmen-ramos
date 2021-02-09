@@ -110,11 +110,21 @@ function paintFavList() {
       html += `<img src= ${item.image.medium}>`;
     }
     html += "</li>";
+    html += '<button class ="js-reset">X</button> ';
   }
   ulFavList.innerHTML = html;
 
   listenShowsEvents();
 }
+
+//reset fav button.
+const resetFavButton = document.querySelector(".js-reset");
+function resetFav() {
+  favoritesList = [""];
+  ulFavList.innerHTML = "";
+}
+console.log(ulFavList);
+resetFavButton.addEventListener("click", resetFav);
 
 function setInLocalStorage() {
   localStorage.setItem("listFavLocal", JSON.stringify(favoritesList));
