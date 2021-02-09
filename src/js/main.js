@@ -93,7 +93,7 @@ function handleShow(ev) {
   } else {
     favoritesList.splice(favoritesFound, 1);
   }
-
+  console.log(favoritesList);
   setInLocalStorage();
   paintFavList();
 }
@@ -108,19 +108,12 @@ function paintFavList() {
     } else {
       html += `<img src= ${item.image.medium}>`;
     }
-    html += "<button class ='js-delete' >Borrar</button>";
     html += "</li>";
   }
   ulFavList.innerHTML = html;
-  handleDelete();
-  // listenShowsEvents();
-}
 
-const deleteButtonFav = document.querySelector(".js-delete");
-function handleDelete() {
-  console.log("me quieren borrar");
+  listenShowsEvents();
 }
-deleteButtonFav.addEventListener("click", handleDelete);
 
 function setInLocalStorage() {
   localStorage.setItem("listFavLocal", JSON.stringify(favoritesList));
@@ -130,6 +123,7 @@ function getFromLocalStorage() {
   const localStorageFavList = localStorage.getItem("listFavLocal");
   if (localStorageFavList !== null) {
     favoritesList = JSON.parse(localStorageFavList);
+    console.log(favoritesList);
     paintFavList();
   }
 }
