@@ -5,9 +5,10 @@ const buttonEl = document.querySelector(".js-button");
 const ulShowList = document.querySelector(".js-showList");
 const ulFavList = document.querySelector(".js-favList");
 let showsList = [];
-let favorites = [];
+let favoritesList = [];
 
 function getApiData() {
+  getFromLocalStorage();
   const inputValue = inputEl.value;
   fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`)
     .then((response) => response.json())
@@ -41,7 +42,6 @@ function paintList() {
     } else {
       favClass = "";
     }
-    // html += "<div class = 'container'>";
     html += `<li class = "js-shows ${favClass}" id=${item.id}>`;
     html += `<h2 class="shows__title">${item.name}</h2>`;
     if (item.image === null) {
@@ -49,16 +49,17 @@ function paintList() {
     } else {
       html += `<img src= ${item.image.medium}>`;
     }
+
     html += "</li>";
-    // html += "</div>";
   }
   ulShowList.innerHTML = html;
+  paintFavList();
   listenShowsEvents();
 }
 
-//favourite or not
+//favourite or not  // REVISAR VIDEO PARA ENTENDER.
 function isShowFav(item) {
-  const favoriteFound = favorites.find((favorite) => {
+  const favoriteFound = favoritesList.find((favorite) => {
     return favorite.id === item.id;
   });
   if (favoriteFound === undefined) {
@@ -83,42 +84,63 @@ function handleShow(ev) {
     return item.id === clickedShowID;
   });
   // favoritesFound me va a dar si el elemento clickado esta en fav o no. Sino se encuentra nos devueve -1
-  const favoritesFound = favorites.findIndex((pepino) => {
+  const favoritesFound = favoritesList.findIndex((pepino) => {
     return pepino.id === clickedShowID;
   });
-  console.log(favoritesFound);
+
   if (favoritesFound === -1) {
-    favorites.push(showObjClicked);
+    favoritesList.push(showObjClicked);
   } else {
-    favorites.splice(favoritesFound, 1);
+    favoritesList.splice(favoritesFound, 1);
   }
-  console.log(favorites);
+
   setInLocalStorage();
-  paintList();
+  paintFavList();
 }
 
-/*
-function paintList() {
-    let html = "";
-    for (const item of showsList) {
-      let favClass; //meter en una funcion mejor?
-      if (isShowFav(item)) {
-        favClass = "favourite";
-      } else {
-        favClass = "";
-      }
-      // html += "<div class = 'container'>";
-      html += `<li class = "js-shows ${favClass}" id=${item.id}>`;
-      html += `<h2 class="shows__title">${item.name}</h2>`;
-      if (item.image === null) {
-        html += `<img src= ${imgDefault} class= "imgDefault">`;
-      } else {
-        html += `<img src= ${item.image.medium}>`;
-      }
-      html += "</li>";
-      // html += "</div>";
+function paintFavList() {
+  let html = "";
+  for (const item of favoritesList) {
+    html += `<li class = "js-shows" id=${item.id}>`;
+    html += `<h2 class="shows__title">${item.name}</h2>`;
+    if (item.image === null) {
+      html += `<img src= ${imgDefault} class= "imgDefault">`;
+    } else {
+      html += `<img src= ${item.image.medium}>`;
     }
-    ulShowList.innerHTML = html;*/
+    html += "<button class ='js-delete' >Borrar</button>";
+    html += "</li>";
+  }
+  ulFavList.innerHTML = html;
+  handleDelete();
+  // listenShowsEvents();
+}
+
+const deleteButtonFav = document.querySelector(".js-delete");
+function handleDelete() {
+  console.log("me quieren borrar");
+}
+deleteButtonFav.addEventListener("click", handleDelete);
+
+function setInLocalStorage() {
+  localStorage.setItem("listFavLocal", JSON.stringify(favoritesList));
+}
+
+function getFromLocalStorage() {
+  const localStorageFavList = localStorage.getItem("listFavLocal");
+  if (localStorageFavList !== null) {
+    favoritesList = JSON.parse(localStorageFavList);
+    paintFavList();
+  }
+}
+/*
+function paintFavList() {
+  let htmlCode = "";
+  console.log(htmlCode);
+  ulFavList.innerHTML = htmlCode;
+}*/
+
+getFromLocalStorage();
 //getApiData();
-/*handleForm();*/
+//handleForm();
 //handleShow();

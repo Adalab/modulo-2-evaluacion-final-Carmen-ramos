@@ -10,3 +10,16 @@
   background-color: maroon;
   color: mediumturquoise;
 }
+main {
+  display: flex;
+}
+.section__fav {
+  border-bottom: 2px solid green;
+  background-color: hotpink;
+  width: 40%;
+}
+
+.section__showlist {
+  background-color: blue;
+  width: 40%;
+}
