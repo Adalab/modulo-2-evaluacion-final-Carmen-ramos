@@ -5,7 +5,15 @@ const buttonEl = document.querySelector(".js-button");
 const ulElement = document.querySelector(".js-showList");
 
 let showsList = [];
-let favorites = [];
+let favorites = [
+  {
+    id: 10191,
+    url: "http://www.tvmaze.com/shows/10191/new-orleans-bowl",
+    name: "New Orleans Bowl",
+    type: "Sports",
+    language: "English",
+  },
+];
 
 function getApiData() {
   const inputValue = inputEl.value;
@@ -56,9 +64,15 @@ function paintList() {
 }
 
 //favourite or not
-function isShowFav(item) {
-  console.log(item.id, favorites);
-  return false;
+/function isShowFav(item) {
+  /*const favoriteFound = favorites.find((favorite) => {
+    return favorite.id === item.id;
+  });
+  if (favoriteFound === undefined) {
+    return false;
+  } else {
+    return true;
+  }*/
 }
 
 //listen cards shows events // cambiar el show por Card????
@@ -70,7 +84,12 @@ function listenShowsEvents() {
 }
 
 function handleShow(ev) {
-  console.log("me estan clicando", ev.currentTarget);
+ /* const clickedShowID = ev.currentTarget.id;
+  console.log("me estan clicando", ev.currentTarget.id);
+  const showFound = showsList.find((item) => {
+    return item.id === clickedShowID;
+  });
+  console.log(showFound);*/
 }
 
 getApiData();
