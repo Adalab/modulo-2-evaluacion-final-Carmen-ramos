@@ -1,7 +1,6 @@
 "use strict";
 const inputEl = document.querySelector(".js-input");
 const buttonEl = document.querySelector(".js-button");
-//const apiurl = 'http://api.tvmaze.com/search/shows?q='
 const ulShowList = document.querySelector(".js-showList");
 const ulFavList = document.querySelector(".js-favList");
 const resetFavButton = document.querySelector(".js-reset");
