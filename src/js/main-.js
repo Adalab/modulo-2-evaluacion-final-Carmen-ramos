@@ -1,0 +1,4 @@
+getApiData();
+paintList();
+
+getFromLocalStorage();
