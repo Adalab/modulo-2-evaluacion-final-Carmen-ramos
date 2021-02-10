@@ -4,7 +4,7 @@ const buttonEl = document.querySelector(".js-button");
 //const apiurl = 'http://api.tvmaze.com/search/shows?q='
 const ulShowList = document.querySelector(".js-showList");
 const ulFavList = document.querySelector(".js-favList");
-const sectShowList = document.querySelector(".js-section-showlist");
+const resetFavButton = document.querySelector(".js-reset");
 let imgDefault = "././assets/images/tvSeries.jpg";
 let showsList = [];
 let favoritesList = [];
@@ -12,7 +12,7 @@ let favoritesList = [];
 function getApiData() {
   getFromLocalStorage();
   const inputValue = inputEl.value;
-  fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`)
+  fetch(`//api.tvmaze.com/search/shows?q=${inputValue}`)
     .then((response) => response.json())
     .then((data) => {
       showsList = [];
@@ -101,35 +101,55 @@ function paintFavList() {
   let html = "";
   for (const item of favoritesList) {
     html += '<div class= "favli-container">';
-    html += `<li class = "js-shows favli" id=${item.id}>`;
+    html += `<li class = " favli" id=${item.id}>`;
     html += `<h3 class="favli__title">${item.name}</h2>`;
     if (item.image === null) {
       html += `<img src= ${imgDefault} class= "favli__img">`;
     } else {
       html += `<img src= ${item.image.medium} class= "favli__img">`;
     }
-    html += "<button class='favli__button'>Eliminar</button>";
+    html += `<button class='favli__button js-remove' id=${item.id}>Eliminar</button>`;
     html += "</li>";
-<<<<<<< HEAD
-    html += '<button class ="js-reset">X</button> ';
-=======
+
     html += "</div>";
->>>>>>> master
   }
   ulFavList.innerHTML = html;
 
-  listenShowsEvents();
+  listenRemoveFavElements();
 }
 
-//reset fav button.
-const resetFavButton = document.querySelector(".js-reset");
-function resetFav() {
-  favoritesList = [""];
-  ulFavList.innerHTML = "";
+//remove element fav button.
+function listenRemoveFavElements() {
+  const removeButtons = document.querySelectorAll(".js-remove");
+  for (const removeButton of removeButtons) {
+    removeButton.addEventListener("click", handleRemoveFavElements);
+  }
 }
-console.log(ulFavList);
+
+// handle remove
+function handleRemoveFavElements(ev) {
+  const clickedShowFavID = parseInt(ev.currentTarget.id);
+  const favoritesFound = favoritesList.findIndex((favorite) => {
+    return favorite.id === clickedShowFavID;
+  });
+  if (favoritesFound !== -1) {
+    favoritesList.splice(favoritesFound, 1);
+  }
+  setInLocalStorage();
+  paintFavList();
+  paintList();
+}
+
+//Reset button.
+function resetFav() {
+  favoritesList = [];
+  paintFavList();
+  paintList();
+  setInLocalStorage();
+}
 resetFavButton.addEventListener("click", resetFav);
 
+// set LOCAL Storage
 function setInLocalStorage() {
   localStorage.setItem("listFavLocal", JSON.stringify(favoritesList));
 }
