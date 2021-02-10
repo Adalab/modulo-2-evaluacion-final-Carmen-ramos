@@ -1,25 +1,5 @@
-.imgDefault {
-  width: 210px;
-  height: 295px;
-}
-
-.shows {
-  background-color: aqua;
-}
-.favourite {
-  background-color: maroon;
-  color: mediumturquoise;
-}
-main {
-  display: flex;
-}
-.section__fav {
-  border-bottom: 2px solid green;
-  background-color: hotpink;
-  width: 40%;
-}
-
-.section__showlist {
-  background-color: blue;
-  width: 40%;
-}
+@import "core/reset";
+@import "core/variables";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/mainpage";
