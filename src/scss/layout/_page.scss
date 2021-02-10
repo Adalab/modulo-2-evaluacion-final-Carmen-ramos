@@ -88,20 +88,23 @@
   color: $color-Background;
 }
 
+// Listado de resultados
 .sect-showlist {
-  border: 2px solid yellow;
   width: 70%;
-  &___title {
+  margin: 20px;
+  &__title {
     text-align: center;
     width: 100%;
+    color: $color1;
+    font-size: 20px;
+    border-bottom: 1px solid $color1;
   }
   &__ul {
     display: flex;
     flex-wrap: wrap;
   }
 }
-.showlis-container {
-}
+
 .showli {
   margin: 20px;
   padding: 15px;

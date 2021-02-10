@@ -4,7 +4,7 @@ const buttonEl = document.querySelector(".js-button");
 //const apiurl = 'http://api.tvmaze.com/search/shows?q='
 const ulShowList = document.querySelector(".js-showList");
 const ulFavList = document.querySelector(".js-favList");
-
+const sectShowList = document.querySelector(".js-section-showlist");
 let imgDefault = "././assets/images/tvSeries.jpg";
 let showsList = [];
 let favoritesList = [];
@@ -34,7 +34,6 @@ formElement.addEventListener("submit", handleForm);
 // paint
 function paintList() {
   let html = "";
-  html += "<h2 class= sect-showlist__title'>Resultados de la búsqueda</h2>";
   for (const item of showsList) {
     let favClass; //meter en una funcion mejor?
     if (isShowFav(item)) {
