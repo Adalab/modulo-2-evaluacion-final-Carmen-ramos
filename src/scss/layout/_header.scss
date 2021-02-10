@@ -1,5 +1,13 @@
-.page__header {
+.header {
+  width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 3rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-Background;
+  &__logo {
+    text-align: center;
+    width: 200px;
+    height: 200px;
+  }
 }
