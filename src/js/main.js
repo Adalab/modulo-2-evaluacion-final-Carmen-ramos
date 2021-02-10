@@ -4,6 +4,8 @@ const buttonEl = document.querySelector(".js-button");
 //const apiurl = 'http://api.tvmaze.com/search/shows?q='
 const ulShowList = document.querySelector(".js-showList");
 const ulFavList = document.querySelector(".js-favList");
+const sectShowList = document.querySelector(".js-section-showlist");
+let imgDefault = "././assets/images/tvSeries.jpg";
 let showsList = [];
 let favoritesList = [];
 
@@ -29,9 +31,6 @@ function handleForm(ev) {
 }
 formElement.addEventListener("submit", handleForm);
 
-// Image default for shows without image.
-let imgDefault = "././assets/images/tvSeries.jpg";
-
 // paint
 function paintList() {
   let html = "";
@@ -42,14 +41,13 @@ function paintList() {
     } else {
       favClass = "";
     }
-    html += `<li class = "js-shows ${favClass}" id=${item.id}>`;
-    html += `<h2 class="shows__title">${item.name}</h2>`;
+    html += `<li class = "js-shows ${favClass} showli" id=${item.id}>`;
+    html += `<h3 class="showli__title">${item.name}</h2>`;
     if (item.image === null) {
-      html += `<img src= ${imgDefault} class= "imgDefault">`;
+      html += `<img src= ${imgDefault} class= "showli__image" title="image default">`;
     } else {
-      html += `<img src= ${item.image.medium}>`;
+      html += `<img src= ${item.image.medium} class= "showli__image" title="show image">`;
     }
-
     html += "</li>";
   }
   ulShowList.innerHTML = html;
@@ -69,7 +67,7 @@ function isShowFav(item) {
   }
 }
 
-//listen cards shows events // cambiar el show por Card????
+//listen cards shows events //
 function listenShowsEvents() {
   const showElements = document.querySelectorAll(".js-shows");
   for (const showElement of showElements) {
@@ -93,24 +91,30 @@ function handleShow(ev) {
   } else {
     favoritesList.splice(favoritesFound, 1);
   }
-  console.log(favoritesList);
   setInLocalStorage();
   paintFavList();
   paintList();
 }
 
+//Paint favorite List
 function paintFavList() {
   let html = "";
   for (const item of favoritesList) {
-    html += `<li class = "js-shows" id=${item.id}>`;
-    html += `<h2 class="shows__title">${item.name}</h2>`;
+    html += '<div class= "favli-container">';
+    html += `<li class = "js-shows favli" id=${item.id}>`;
+    html += `<h3 class="favli__title">${item.name}</h2>`;
     if (item.image === null) {
-      html += `<img src= ${imgDefault} class= "imgDefault">`;
+      html += `<img src= ${imgDefault} class= "favli__img">`;
     } else {
-      html += `<img src= ${item.image.medium}>`;
+      html += `<img src= ${item.image.medium} class= "favli__img">`;
     }
+    html += "<button class='favli__button'>Eliminar</button>";
     html += "</li>";
+<<<<<<< HEAD
     html += '<button class ="js-reset">X</button> ';
+=======
+    html += "</div>";
+>>>>>>> master
   }
   ulFavList.innerHTML = html;
 
@@ -130,6 +134,7 @@ function setInLocalStorage() {
   localStorage.setItem("listFavLocal", JSON.stringify(favoritesList));
 }
 
+//get from local Storage
 function getFromLocalStorage() {
   const localStorageFavList = localStorage.getItem("listFavLocal");
   if (localStorageFavList !== null) {

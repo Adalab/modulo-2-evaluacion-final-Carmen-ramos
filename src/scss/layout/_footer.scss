@@ -1,8 +1,12 @@
-.page__footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100vw;
-  padding: 1rem;
-  color: $color-secondary;
+.footer {
+  height: 5vh;
+  padding: 20px;
+  border-top: solid 2px $color3;
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-Background;
+  &__image {
+    width: 100px;
+    height: 100px;
+  }
 }
