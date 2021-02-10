@@ -1,12 +1,15 @@
 .footer {
-  height: 5vh;
-  padding: 20px;
+  //height: 5vh;
+  padding: 0 20px;
   border-top: solid 2px $color3;
   display: flex;
   justify-content: space-between;
   background-color: $color-Background;
-  &__image {
-    width: 100px;
-    height: 100px;
+  &__small {
+    padding-top: 50px;
+  }
+  &__img {
+    width: 80px;
+    height: 80px;
   }
 }

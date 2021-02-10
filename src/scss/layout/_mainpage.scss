@@ -2,6 +2,7 @@
   background-color: $color-Background;
   display: flex;
   flex-wrap: wrap;
+  flex-grow: 1;
 }
 .title1 {
   font-size: 20px;
@@ -54,6 +55,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  &__button {
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: $color-Background;
+    border: 1px groove white;
+    border-radius: 20px;
+    font-size: 10px;
   }
 }
 
