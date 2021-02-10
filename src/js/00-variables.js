@@ -1,4 +1,5 @@
 "use strict";
+//Global variables
 const inputEl = document.querySelector(".js-input");
 const buttonEl = document.querySelector(".js-button");
 const ulShowList = document.querySelector(".js-showList");

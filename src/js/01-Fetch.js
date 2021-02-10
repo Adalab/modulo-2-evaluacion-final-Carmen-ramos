@@ -1,3 +1,4 @@
+//Get information from Api
 function getApiData() {
   getFromLocalStorage();
   const inputValue = inputEl.value;

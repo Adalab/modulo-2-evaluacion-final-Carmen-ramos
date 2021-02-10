@@ -1,11 +1,9 @@
 // handle for Show List
 function handleShow(ev) {
   const clickedShowID = parseInt(ev.currentTarget.id);
-  //buscar el contenido del elemento clickado.
   const showObjClicked = showsList.find((item) => {
     return item.id === clickedShowID;
   });
-  // favoritesFound me va a dar si el elemento clickado esta en fav o no. Sino se encuentra nos devueve -1
   const favoritesFound = favoritesList.findIndex((favorite) => {
     return favorite.id === clickedShowID;
   });

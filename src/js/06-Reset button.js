@@ -1,3 +1,4 @@
+//Reset button for all favorites
 function resetFav() {
   favoritesList = [];
   paintFavList();
