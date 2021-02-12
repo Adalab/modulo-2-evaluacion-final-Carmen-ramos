@@ -31,9 +31,9 @@ function paintList() {
   listenShowsEvents();
 }
 
-function isRecomendedShow(item) {
+function isRecomendedShow(pepino) {
   let languages = ["English", "Spanish", "Portuguese"];
-  return languages.includes(item.language);
+  return languages.includes(pepino.language);
   /*if (languages.includes(item.language) === true) {
     return true;
   } else {
