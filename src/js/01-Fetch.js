@@ -13,3 +13,11 @@ function getApiData() {
     });
 }
 buttonEl.addEventListener("click", getApiData);
+
+const buttonLog = document.querySelector(".js-log");
+
+function logFavNumbers() {
+  console.log(favoritesList.length);
+}
+
+buttonLog.addEventListener("click", logFavNumbers);
