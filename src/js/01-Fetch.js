@@ -13,3 +13,13 @@ function getApiData() {
     });
 }
 buttonEl.addEventListener("click", getApiData);
+
+// prueba de la entrevista - conseguir un boton que loguee cantidad de favoritos en consola
+
+/*const buttonLog = document.querySelector(".js-log");
+
+function logFavNumbers() {
+  console.log(favoritesList.length);
+}
+
+buttonLog.addEventListener("click", logFavNumbers);*/
