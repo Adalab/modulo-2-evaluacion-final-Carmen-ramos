@@ -1,13 +1,18 @@
 //Paint Search result list
 function paintList() {
   let html = "";
+  //let favClass = "";
   for (const item of showsList) {
-    let favClass;
-    if (isShowFav(item)) {
+    let favClass = isShowFav(item) ? "favourite" : "";
+    /*if (isShowFav(item)) {
       favClass = "favourite";
     } else {
       favClass = "";
-    }
+    //let favClass = true;
+    //let item = favClass === isShowFav ? "favorite" : "";
+    let  favClass= item === isShowFav ? "favorite" : "";
+    */
+
     html += `<li class = "js-shows ${favClass} showli" id=${item.id}>`;
     html += `<h3 class="showli__title">${item.name}</h2>`;
     if (item.image === null) {

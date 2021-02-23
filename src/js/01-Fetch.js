@@ -1,6 +1,6 @@
 //Get information from Api
+getFromLocalStorage();
 function getApiData() {
-  getFromLocalStorage();
   const inputValue = inputEl.value;
   fetch(`//api.tvmaze.com/search/shows?q=${inputValue}`)
     .then((response) => response.json())
